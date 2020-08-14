@@ -66,6 +66,7 @@
 	const select = qb.select(model);
 
 	select
+		.not()
 		.equal('pbup_id', 209)
 		.execute()
 		.then((data) => {
