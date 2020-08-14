@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="TP">
+	<script src="src/QueryBuilder.js"></script>
+	<script src="src/WhereExpression.js"></script>
+	<script src="src/SelectStatement.js"></script>
+
+<body>
+	
+<script>
+	const qb = new QueryBuilder('http://t4x.trackpoint.lv/api/v1/query');
+	const model = {
+			'RETURNING': [
+				'pbup_id',
+				'pbup_first_name',
+				'pbup_last_name',
+				
+				'pbup_begin',
+				'pbup_end',
+
+				'ptumc_map',
+				'ptutc_marker_tail',
+				'ptutc_clustered_marker',
+				'ptutfc_jams',
+				'ptutfc_icing',
+				'ptutfc_border',
+				'ptutfc_repairs',
+				'ptupoc_mode'
+
+			],
+			'INTERFACE': {
+				'NAME': 'Common.UserProfile',
+				'RELATION': [
+					{
+		
+						'JOIN': 'pbup_id',
+						'TYPE': 'LEFT_JOIN',
+						'INTERFACE': {
+							'NAME': 'Portal.UserMapComponent'
+						}
+					}, {
+		
+						'JOIN': 'pbup_id',
+						'TYPE': 'LEFT_JOIN',
+						'INTERFACE': {
+							'NAME': 'Portal.UserTrackingComponent'
+						}
+					}, {
+		
+						'JOIN': 'pbup_id',
+						'TYPE': 'LEFT_JOIN',
+						'INTERFACE': {
+							'NAME': 'Portal.UserTrafficComponent'
+						}
+					}, {
+		
+						'JOIN': 'pbup_id',
+						'TYPE': 'LEFT_JOIN',
+						'INTERFACE': {
+							'NAME': 'Portal.UserPackageOverviewComponent'
+						}
+					}
+				]
+			}
+		}; 
+
+	const select = qb.select(model);
+
+	select
+		.equal('pbup_id', 209)
+		.execute()
+		.then((data) => {
+			console.log(data)
+		});
+</script>
+
+</body>
+</html>
