@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="TP">
+<!--
 	<script src="src/QueryBuilder.js"></script>
 	<script src="src/WhereExpression.js"></script>
 	<script src="src/SelectStatement.js"></script>
 
+	
+-->
+
+<script src="build/QueryBuilder.js"></script>
+
 <body>
 	
 <script>
+	//import QueryBuilder from './build/QueryBuilder.js';
+
 	const qb = new QueryBuilder('http://t4x.trackpoint.lv/api/v1/query');
 	const model = {
 			'RETURNING': [
@@ -63,11 +71,9 @@
 			}
 		}; 
 
-	const select = qb.select(model);
-
-	select
-		.not()
-		.equal('pbup_id', 209)
+	qb.select(model)
+		//.equal('pbup_id', 209)
+		.like('pbup_first_name', 'test')
 		.execute()
 		.then((data) => {
 			console.log(data)

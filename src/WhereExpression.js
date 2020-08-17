@@ -1,4 +1,4 @@
-class WhereExpression{
+export default class WhereExpression{
 	
 	constructor(){
 		this.expressions = [];
@@ -36,6 +36,19 @@ class WhereExpression{
 
 	lessEqual(name, constant){
 		this.expressions.push({'TYPE': 'LESS_EQUAL', 'NAME': name, 'CONSTANT': constant, 'DISJUNCTION': this.disjunction});
+		this.disjunction = false;
+		return this;
+	}
+
+
+	like(name, constant){
+		this.expressions.push({'TYPE': 'LIKE', 'NAME': name, 'CONSTANT': constant, 'DISJUNCTION': this.disjunction});
+		this.disjunction = false;
+		return this;
+	}
+
+	between(name, begin, end){
+		this.expressions.push({'TYPE': 'BETWEEN', 'NAME': name, 'CONSTANT': [begin, end], 'DISJUNCTION': this.disjunction});
 		this.disjunction = false;
 		return this;
 	}

@@ -1,0 +1,16 @@
+{
+  "name": "js-data-query-builder",
+  "version": "1.0.0",
+  "main": "src/QueryBuilder.js",
+  "repository": "git@github.com:smashing-kenny/js-data-query-builder.git",
+  "author": "<eduards.gruberts@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "path": "^0.12.7",
+    "rollup": "^2.26.3"
+  },
+  "scripts":{
+    "build": "rollup src/QueryBuilder.js --file build/QueryBuilder.js --format umd --name QueryBuilder",
+    "server": "php -S 0.0.0.0:8080"
+  }
+}

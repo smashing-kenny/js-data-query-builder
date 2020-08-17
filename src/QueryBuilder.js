@@ -1,4 +1,6 @@
-class QueryBuilder{
+import SelectStatement from './SelectStatement.js';
+
+export default class QueryBuilder{
 
 	constructor(url){
 		this.url = url;

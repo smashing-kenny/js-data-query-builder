@@ -1,4 +1,5 @@
-class SelectStatement extends WhereExpression{
+import WhereExpression from './WhereExpression.js';
+export default class SelectStatement extends WhereExpression{
 
 	constructor(url, interfaces){
 		super();
